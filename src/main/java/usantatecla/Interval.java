@@ -1,5 +1,8 @@
 package usantatecla;
 
+
+import usantatecla.checkers.IntersectionCheckerHandler;
+
 public class Interval {
 
     public Min min;
@@ -11,43 +14,14 @@ public class Interval {
         this.max = max;
     }
 
+    private IntersectionCheckerHandler intersectionCheckerHandler = new IntersectionCheckerHandler();
+
     public boolean include(double value) {
         return this.min.isWithin(value) && this.max.isWithin(value);
     }
 
-    public boolean isIntersected(Interval comparedInterval) {
-        if (comparedInterval.min.value < this.min.value) {
-            if (comparedInterval.max.value < this.max.value && this.min.value < comparedInterval.max.value) {
-                return true;
-            }
-            if (this.min.isWithin(this.min.value) && comparedInterval.max.isWithin(comparedInterval.max.value)
-                    && Double.compare(comparedInterval.max.value, this.min.value) == 0) {
-                return true;
-            }
-            if (comparedInterval.max.value > this.max.value) {
-                return true;
-            }
-        }
-        if (comparedInterval.min.value > this.min.value) {
-            if (comparedInterval.max.value > this.max.value && this.max.value > comparedInterval.min.value) {
-                return true;
-            }
-            if (this.max.isWithin(this.max.value) && comparedInterval.min.isWithin(comparedInterval.min.value)
-                    && Double.compare(comparedInterval.min.value, this.max.value) == 0) {
-                return true;
-            }
-            if (comparedInterval.max.value < this.max.value) {
-                return true;
-            }
-        }
-        if (this.max.isWithin(this.max.value) && this.min.isWithin(this.min.value)
-                && comparedInterval.max.isWithin(comparedInterval.max.value)
-                && comparedInterval.max.isWithin(comparedInterval.max.value)
-                && Double.compare(comparedInterval.max.value, this.max.value) == 0
-                && Double.compare(comparedInterval.min.value, this.min.value) == 0) {
-            return true;
-        }
-        return false;
+    public boolean isIntersected(Interval compareInterval) {
+        return intersectionCheckerHandler.handle(this, compareInterval);
     }
 
     @Override
