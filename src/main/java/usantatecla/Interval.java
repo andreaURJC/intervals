@@ -40,10 +40,13 @@ public class Interval {
                 return true;
             }
         }
-            if (Double.compare(comparedInterval.max.value, this.max.value) == 0
-                    && (Double.compare(comparedInterval.min.value, this.min.value) == 0)) {
-                return true;
-            }
+        if (this.max.isWithin(this.max.value) && this.min.isWithin(this.min.value)
+                && comparedInterval.max.isWithin(comparedInterval.max.value)
+                && comparedInterval.max.isWithin(comparedInterval.max.value)
+                && Double.compare(comparedInterval.max.value, this.max.value) == 0
+                && Double.compare(comparedInterval.min.value, this.min.value) == 0) {
+            return true;
+        }
         return false;
     }
 
