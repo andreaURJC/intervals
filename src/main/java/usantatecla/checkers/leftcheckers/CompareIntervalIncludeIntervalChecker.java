@@ -12,6 +12,6 @@ public class CompareIntervalIncludeIntervalChecker extends IntersectionChecker {
         if (compareInterval.max.value > interval.max.value) {
             return true;
         }
-        return this.setNext(interval, compareInterval);
+        return this.nextCheck(interval, compareInterval);
     }
 }

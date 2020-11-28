@@ -16,6 +16,6 @@ public class MiddleChecker extends IntersectionChecker {
                 && Double.compare(compareInterval.min.value, interval.min.value) == 0) {
             return true;
         }
-        return this.setNext(interval, compareInterval);
+        return this.nextCheck(interval, compareInterval);
     }
 }

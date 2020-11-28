@@ -13,6 +13,6 @@ public class PointIntersectionChecker extends IntersectionChecker {
                 && Double.compare(compareInterval.max.value, interval.min.value) == 0) {
             return true;
         }
-        return setNext(interval, compareInterval);
+        return nextCheck(interval, compareInterval);
     }
 }

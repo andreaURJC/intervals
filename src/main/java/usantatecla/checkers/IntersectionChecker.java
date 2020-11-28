@@ -9,12 +9,12 @@ public abstract class IntersectionChecker {
         this.nextChecker = nextChecker;
     }
 
-    public boolean setNext(Interval interval, Interval compareInterval) {
+    public boolean nextCheck(Interval interval, Interval compareInterval) {
         if (nextChecker == null) {
             return false;
         }
         return nextChecker.handle(interval, compareInterval);
     }
 
-    public abstract boolean handle(Interval interval, Interval compareInterval);
+    protected abstract boolean handle(Interval interval, Interval compareInterval);
 }

@@ -12,6 +12,6 @@ public class RightIntersectionChecker extends IntersectionChecker {
         if (compareInterval.max.value > interval.max.value && interval.max.value > compareInterval.min.value) {
             return true;
         }
-        return this.setNext(interval, compareInterval);
+        return this.nextCheck(interval, compareInterval);
     }
 }

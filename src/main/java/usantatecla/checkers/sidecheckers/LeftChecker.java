@@ -20,6 +20,6 @@ public class LeftChecker extends IntersectionChecker {
         if (compareInterval.min.value < interval.min.value) {
             return leftIntersectionChecker.handle(interval, compareInterval);
         }
-        return this.setNext(interval, compareInterval);
+        return this.nextCheck(interval, compareInterval);
     }
 }

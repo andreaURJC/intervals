@@ -20,8 +20,8 @@ public class Interval {
         return this.min.isWithin(value) && this.max.isWithin(value);
     }
 
-    public boolean isIntersected(Interval comparedInterval) {
-        return intersectionCheckerHandler.handle(this, comparedInterval);
+    public boolean isIntersected(Interval compareInterval) {
+        return intersectionCheckerHandler.handle(this, compareInterval);
     }
 
     @Override

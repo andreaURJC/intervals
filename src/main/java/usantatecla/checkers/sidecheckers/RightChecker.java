@@ -20,6 +20,6 @@ public class RightChecker extends IntersectionChecker {
         if (compareInterval.min.value > interval.min.value) {
             return rightIntersectionChecker.handle(interval, compareInterval);
         }
-        return this.setNext(interval, compareInterval);
+        return this.nextCheck(interval, compareInterval);
     }
 }
