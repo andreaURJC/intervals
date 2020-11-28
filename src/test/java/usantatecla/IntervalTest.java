@@ -10,6 +10,8 @@ public class IntervalTest {
   
   private Point left = new Point(-2.2);
   private Point right = new Point(4.4);
+  private Point left2 = new Point(-6.6);
+  private Point right2 = new Point(-1.1);
   private IntervalBuilder intervalBuilder;
 
   @BeforeEach
@@ -64,6 +66,12 @@ public class IntervalTest {
     assertTrue(interval.include(right.getLess()));
     assertTrue(interval.include(right.getEquals()));
     assertFalse(interval.include(right.getGreater()));
+  }
+
+  @Test
+  public void givenLeftIntersectedIntervalWhenIncludeThenReturnTrue() {
+    Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
+    assertTrue(interval.isIntersected(this.intervalBuilder.open(this.left2.getEquals()).open(this.right2.getEquals()).build()));
   }
 
 }
