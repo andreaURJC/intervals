@@ -25,6 +25,10 @@ public class Interval {
         if (comparedInterval.min.value > this.min.value && comparedInterval.max.value < this.max.value) {
             return true;
         }
+        if (Double.compare(comparedInterval.max.value, this.max.value) == 0
+                && (Double.compare(comparedInterval.min.value, this.min.value) == 0)) {
+            return true;
+        }
         return false;
     }
 
