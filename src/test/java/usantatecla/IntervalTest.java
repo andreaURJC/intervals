@@ -70,16 +70,23 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenLeftIntersectedIntervalWhenIsIntersectedThenReturnTrue() {
+    public void givenSmallerIntersectedIntervalWhenIsIntersectedThenReturnTrue() {
         Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
         Interval compareInterval = this.intervalFactory.getSmallerIntersectedInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
 
     @Test
-    public void givenRightIntersectedIntervalWhenIsIntersectedThenReturnTrue() {
+    public void givenGreaterIntersectedIntervalWhenIsIntersectedThenReturnTrue() {
         Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
         Interval compareInterval = this.intervalFactory.getGreaterIntersectedInterval(interval);
+        assertTrue(interval.isIntersected(compareInterval));
+    }
+
+    @Test
+    public void givenSmallerIntersectedOnPointIntervalWhenIsIntersectedThenReturnTrue() {
+        Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
+        Interval compareInterval = this.intervalFactory.getSmallerIntersectedOnPointInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
 

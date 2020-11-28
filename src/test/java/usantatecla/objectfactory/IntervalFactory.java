@@ -19,6 +19,12 @@ public class IntervalFactory implements IntervalObjectFactory {
         return new IntervalBuilder().closed(min.getGreater()).closed(max.getGreater()).build();
     }
 
+    public Interval getSmallerIntersectedOnPointInterval(Interval interval) {
+        Point max = new Point(interval.min.value);
+
+        return new IntervalBuilder().closed(max.getLess() - 1).closed(max.getEquals()).build();
+    }
+
     public Interval getSmallerContainedInterval(Interval interval) {
         Point min = new Point(interval.min.value);
         Point max = new Point(interval.max.value);

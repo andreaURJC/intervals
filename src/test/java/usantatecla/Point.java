@@ -13,7 +13,7 @@ public class Point {
     return this.value - Point.DEVIATION;
   }
 
-  double getEquals() {
+  public double getEquals() {
     return this.value;
   }
 
