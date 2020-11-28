@@ -16,10 +16,10 @@ public class Interval {
     }
 
     public boolean isIntersected(Interval comparedInterval) {
-        if (comparedInterval.min.value < this.min.value && comparedInterval.max.value < this.max.value) {
+        if (comparedInterval.min.value < this.min.value && comparedInterval.max.value < this.max.value && this.min.value < comparedInterval.max.value) {
             return true;
         }
-        if (comparedInterval.min.value > this.min.value && comparedInterval.max.value > this.max.value) {
+        if (comparedInterval.min.value > this.min.value && comparedInterval.max.value > this.max.value && this.max.value > comparedInterval.min.value) {
             return true;
         }
         if (comparedInterval.min.value > this.min.value && comparedInterval.max.value < this.max.value) {

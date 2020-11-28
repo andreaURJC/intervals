@@ -42,6 +42,8 @@ public class IntervalFactory implements IntervalObjectFactory {
     }
 
     public Interval getGreaterNotIntersectedInterval(Interval interval) {
-        return null;
+        Point max = new Point(interval.max.value);
+
+        return new IntervalBuilder().closed(max.getGreater()).closed(max.getGreater() + 1).build();
     }
 }

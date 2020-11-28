@@ -103,4 +103,11 @@ public class IntervalTest {
         Interval compareInterval = this.intervalFactory.getSameInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
+
+    @Test
+    public void givenGreaterNotIntersectedIntervalWhenIsIntersectedThenReturnFalse() {
+        Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
+        Interval compareInterval = this.intervalFactory.getGreaterNotIntersectedInterval(interval);
+        assertTrue(interval.isIntersected(compareInterval));
+    }
 }
