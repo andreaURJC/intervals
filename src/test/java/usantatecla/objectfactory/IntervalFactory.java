@@ -20,7 +20,10 @@ public class IntervalFactory implements IntervalObjectFactory {
     }
 
     public Interval getSmallerContainedInterval(Interval interval) {
-        return null;
+        Point min = new Point(interval.min.value);
+        Point max = new Point(interval.max.value);
+
+        return new IntervalBuilder().closed(min.getGreater()).closed(max.getLess()).build();
     }
 
     public Interval getGreaterContainedInterval(Interval interval) {
