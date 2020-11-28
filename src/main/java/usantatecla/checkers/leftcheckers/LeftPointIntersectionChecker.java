@@ -3,13 +3,13 @@ package usantatecla.checkers.leftcheckers;
 import usantatecla.Interval;
 import usantatecla.checkers.IntersectionChecker;
 
-public class PointIntersectionChecker extends IntersectionChecker {
-    public PointIntersectionChecker(IntersectionChecker nextChecker) {
+public class LeftPointIntersectionChecker extends IntersectionChecker {
+    public LeftPointIntersectionChecker(IntersectionChecker nextChecker) {
         super(nextChecker);
     }
 
     public boolean handle(Interval interval, Interval compareInterval) {
-        if (interval.min.isWithin(interval.min.value) && compareInterval.max.isWithin(compareInterval.max.value)
+        if (interval.min.isClosed() && compareInterval.max.isClosed()
                 && Double.compare(compareInterval.max.value, interval.min.value) == 0) {
             return true;
         }

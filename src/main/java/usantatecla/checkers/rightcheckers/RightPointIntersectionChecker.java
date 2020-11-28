@@ -9,7 +9,7 @@ public class RightPointIntersectionChecker extends IntersectionChecker {
     }
 
     public boolean handle(Interval interval, Interval compareInterval) {
-        if (interval.max.isWithin(interval.max.value) && compareInterval.min.isWithin(compareInterval.min.value)
+        if (interval.max.isClosed() && compareInterval.min.isClosed()
                 && Double.compare(compareInterval.min.value, interval.max.value) == 0) {
             return true;
         }

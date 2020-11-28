@@ -9,9 +9,9 @@ public class MiddleChecker extends IntersectionChecker {
     }
 
     public boolean handle(Interval interval, Interval compareInterval) {
-        if (interval.max.isWithin(interval.max.value) && interval.min.isWithin(interval.min.value)
-                && compareInterval.max.isWithin(compareInterval.max.value)
-                && compareInterval.max.isWithin(compareInterval.max.value)
+        if (interval.max.isClosed() && interval.min.isClosed()
+                && compareInterval.max.isClosed()
+                && compareInterval.max.isClosed()
                 && Double.compare(compareInterval.max.value, interval.max.value) == 0
                 && Double.compare(compareInterval.min.value, interval.min.value) == 0) {
             return true;

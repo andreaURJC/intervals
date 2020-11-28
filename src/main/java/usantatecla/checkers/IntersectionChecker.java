@@ -16,5 +16,5 @@ public abstract class IntersectionChecker {
         return nextChecker.handle(interval, compareInterval);
     }
 
-    protected abstract boolean handle(Interval interval, Interval compareInterval);
+    public abstract boolean handle(Interval interval, Interval compareInterval);
 }
