@@ -20,9 +20,13 @@ public class Interval {
             if (comparedInterval.max.value < this.max.value && this.min.value < comparedInterval.max.value) {
                 return true;
             }
-            if (Double.compare(comparedInterval.max.value, this.min.value) == 0) {
-                return true;
-            }
+           if(this.min.isWithin(this.min.value) && comparedInterval.max.isWithin(comparedInterval.max.value)
+                   && Double.compare(comparedInterval.max.value, this.min.value) == 0) {
+               return true;
+           }
+           if (comparedInterval.max.value > this.max.value) {
+               return true;
+           }
         }
         if (comparedInterval.min.value > this.min.value) {
             if (comparedInterval.max.value > this.max.value && this.max.value > comparedInterval.min.value) {
