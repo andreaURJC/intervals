@@ -9,6 +9,8 @@ public interface IntervalObjectFactory {
 
     Interval getSmallerIntersectedOnPointInterval(Interval interval);
 
+    Interval getGreaterIntersectedOnPointInterval(Interval interval);
+
     Interval getSmallerContainedInterval(Interval interval);
 
     Interval getGreaterContainedInterval(Interval interval);
