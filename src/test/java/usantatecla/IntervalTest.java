@@ -89,4 +89,11 @@ public class IntervalTest {
         Interval compareInterval = this.intervalFactory.getSmallerContainedInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
+
+    @Test
+    public void givenGreaterIncludedIntervalWhenIncludeThenReturnTrue() {
+        Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
+        Interval compareInterval = this.intervalFactory.getGreaterContainedInterval(interval);
+        assertTrue(interval.isIntersected(compareInterval));
+    }
 }

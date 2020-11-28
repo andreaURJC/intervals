@@ -27,7 +27,10 @@ public class IntervalFactory implements IntervalObjectFactory {
     }
 
     public Interval getGreaterContainedInterval(Interval interval) {
-        return null;
+        Point min = new Point(interval.min.value);
+        Point max = new Point(interval.max.value);
+
+        return new IntervalBuilder().closed(min.getLess()).closed(max.getGreater()).build();
     }
 
     public Interval getSmallerNotIntersectedInterval(Interval interval) {
