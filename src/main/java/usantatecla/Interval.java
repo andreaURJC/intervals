@@ -16,7 +16,7 @@ public class Interval {
 	}
 
 	public boolean isIntersected(Interval comparedInterval) {
-		if(this.min.value < comparedInterval.max.value) {
+		if(comparedInterval.min.value < this.min.value  && comparedInterval.max.value < this.max.value ) {
 			return true;
 		}
 		return false;

@@ -76,4 +76,10 @@ public class IntervalTest {
         assertTrue(interval.isIntersected(compareInterval));
     }
 
+    @Test
+    public void givenRightIntersectedIntervalWhenIncludeThenReturnTrue() {
+        Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
+        Interval compareInterval = this.intervalFactory.getGreaterIntersectedInterval(interval);
+        assertTrue(interval.isIntersected(compareInterval));
+    }
 }

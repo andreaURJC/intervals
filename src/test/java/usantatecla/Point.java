@@ -17,7 +17,7 @@ public class Point {
     return this.value;
   }
 
-  double getGreater() {
+  public double getGreater() {
     return this.value + Point.DEVIATION;
   }
   
