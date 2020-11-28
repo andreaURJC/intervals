@@ -1,6 +1,7 @@
-package usantatecla.checkers;
+package usantatecla.checkers.leftcheckers;
 
 import usantatecla.Interval;
+import usantatecla.checkers.IntersectionChecker;
 
 public class LeftIntersectionChecker extends IntersectionChecker {
     public LeftIntersectionChecker(IntersectionChecker nextChecker) {
@@ -11,12 +12,6 @@ public class LeftIntersectionChecker extends IntersectionChecker {
         if (compareInterval.max.value < interval.max.value && interval.min.value < compareInterval.max.value) {
             return true;
         }
-        if (compareInterval.max.value > interval.max.value) {
-            return true;
-        }
-        if (interval.min.isWithin(interval.min.value) && compareInterval.max.isWithin(compareInterval.max.value)) {
-            return nextChecker.handle(interval,compareInterval);
-        }
-        return false;
+        return this.setNext(interval,compareInterval);
     }
 }

@@ -11,7 +11,7 @@ public abstract class IntersectionChecker {
 
     public boolean setNext(Interval interval, Interval compareInterval) {
         if (nextChecker == null) {
-            return true;
+            return false;
         }
         return nextChecker.handle(interval, compareInterval);
     }
