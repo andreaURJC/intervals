@@ -7,7 +7,7 @@ public class IntervalBuilder {
   private boolean minConfigured;
   private boolean maxConfigured;
 
-  IntervalBuilder(){
+  public IntervalBuilder(){
     this.minConfigured = false;
     this.maxConfigured = false;
   }

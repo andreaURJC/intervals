@@ -2,7 +2,7 @@ package usantatecla;
 
 public class Min {
 
-  protected double value;
+  public double value;
 
 	public Min(double value) {
     this.value = value;

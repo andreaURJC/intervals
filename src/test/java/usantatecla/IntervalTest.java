@@ -5,20 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import usantatecla.objectfactory.IntervalFactory;
 
 public class IntervalTest {
 
     private Point left = new Point(-2.2);
     private Point right = new Point(4.4);
-    private Point left2 = new Point(-6.6);
-    private Point right2 = new Point(-1.1);
     private IntervalBuilder intervalBuilder;
+    private IntervalFactory intervalFactory;
 
     @BeforeEach
     public void before() {
         this.left = new Point(-2.2);
         this.right = new Point(4.4);
         this.intervalBuilder = new IntervalBuilder();
+        this.intervalFactory = new IntervalFactory();
     }
 
     @Test
@@ -71,8 +72,7 @@ public class IntervalTest {
     @Test
     public void givenLeftIntersectedIntervalWhenIncludeThenReturnTrue() {
         Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
-        intervalBuilder = new IntervalBuilder();
-        Interval compareInterval = this.intervalBuilder.closed(this.left2.getEquals()).closed(this.right2.getEquals()).build();
+        Interval compareInterval = this.intervalFactory.getSmallerIntersectedInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
 
