@@ -1,9 +1,18 @@
 package usantatecla;
 
+import usantatecla.checkers.*;
+import usantatecla.checkers.leftcheckers.CompareIntervalIncludeIntervalChecker;
+import usantatecla.checkers.leftcheckers.LeftIntersectionChecker;
+import usantatecla.checkers.leftcheckers.PointIntersectionChecker;
+
 public class Interval {
 
     public Min min;
     public Max max;
+
+    private IntersectionChecker pointIntersectionChecker = new PointIntersectionChecker(null);
+    private IntersectionChecker compareIntervalIncludeIntervalChecker = new CompareIntervalIncludeIntervalChecker(pointIntersectionChecker);
+    private IntersectionChecker leftIntersectionChecker = new LeftIntersectionChecker(compareIntervalIncludeIntervalChecker);
 
     public Interval(Min min, Max max) {
         assert min.value <= max.value;
@@ -17,16 +26,7 @@ public class Interval {
 
     public boolean isIntersected(Interval comparedInterval) {
         if (comparedInterval.min.value < this.min.value) {
-            if (comparedInterval.max.value < this.max.value && this.min.value < comparedInterval.max.value) {
-                return true;
-            }
-            if (this.min.isWithin(this.min.value) && comparedInterval.max.isWithin(comparedInterval.max.value)
-                    && Double.compare(comparedInterval.max.value, this.min.value) == 0) {
-                return true;
-            }
-            if (comparedInterval.max.value > this.max.value) {
-                return true;
-            }
+            return leftIntersectionChecker.handle(this,comparedInterval);
         }
         if (comparedInterval.min.value > this.min.value) {
             if (comparedInterval.max.value > this.max.value && this.max.value > comparedInterval.min.value) {
