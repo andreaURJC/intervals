@@ -20,29 +20,32 @@ public class Interval {
             if (comparedInterval.max.value < this.max.value && this.min.value < comparedInterval.max.value) {
                 return true;
             }
-           if(this.min.isWithin(this.min.value) && comparedInterval.max.isWithin(comparedInterval.max.value)
-                   && Double.compare(comparedInterval.max.value, this.min.value) == 0) {
-               return true;
-           }
-           if (comparedInterval.max.value > this.max.value) {
-               return true;
-           }
+            if (this.min.isWithin(this.min.value) && comparedInterval.max.isWithin(comparedInterval.max.value)
+                    && Double.compare(comparedInterval.max.value, this.min.value) == 0) {
+                return true;
+            }
+            if (comparedInterval.max.value > this.max.value) {
+                return true;
+            }
         }
         if (comparedInterval.min.value > this.min.value) {
             if (comparedInterval.max.value > this.max.value && this.max.value > comparedInterval.min.value) {
                 return true;
             }
-            if (Double.compare(comparedInterval.min.value, this.max.value) == 0) {
+            if (this.max.isWithin(this.max.value) && comparedInterval.min.isWithin(comparedInterval.min.value)
+                    && Double.compare(comparedInterval.min.value, this.max.value) == 0) {
+                return true;
+            }
+            if (comparedInterval.max.value < this.max.value) {
                 return true;
             }
         }
-        if (comparedInterval.min.value > this.min.value && comparedInterval.max.value < this.max.value) {
-            return true;
-        }
+
         if (Double.compare(comparedInterval.max.value, this.max.value) == 0
                 && (Double.compare(comparedInterval.min.value, this.min.value) == 0)) {
             return true;
         }
+
         return false;
     }
 
