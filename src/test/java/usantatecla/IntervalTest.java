@@ -70,30 +70,37 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenLeftIntersectedIntervalWhenIncludeThenReturnTrue() {
+    public void givenLeftIntersectedIntervalWhenIsIntersectedThenReturnTrue() {
         Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
         Interval compareInterval = this.intervalFactory.getSmallerIntersectedInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
 
     @Test
-    public void givenRightIntersectedIntervalWhenIncludeThenReturnTrue() {
+    public void givenRightIntersectedIntervalWhenIsIntersectedThenReturnTrue() {
         Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
         Interval compareInterval = this.intervalFactory.getGreaterIntersectedInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
 
     @Test
-    public void givenSmallerIncludedIntervalWhenIncludeThenReturnTrue() {
+    public void givenSmallerIncludedIntervalWhenIsIntersectedThenReturnTrue() {
         Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
         Interval compareInterval = this.intervalFactory.getSmallerContainedInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
 
     @Test
-    public void givenGreaterIncludedIntervalWhenIncludeThenReturnTrue() {
+    public void givenGreaterIncludedIntervalWhenIsIntersectedThenReturnTrue() {
         Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
         Interval compareInterval = this.intervalFactory.getGreaterContainedInterval(interval);
+        assertTrue(interval.isIntersected(compareInterval));
+    }
+
+    @Test
+    public void givenEqualIntervalWhenIsIntersectedThenReturnTrue() {
+        Interval interval = this.intervalBuilder.closed(this.left.getEquals()).closed(this.right.getEquals()).build();
+        Interval compareInterval = this.intervalFactory.getSameInterval(interval);
         assertTrue(interval.isIntersected(compareInterval));
     }
 }

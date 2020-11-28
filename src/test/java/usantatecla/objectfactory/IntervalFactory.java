@@ -33,6 +33,10 @@ public class IntervalFactory implements IntervalObjectFactory {
         return new IntervalBuilder().closed(min.getLess()).closed(max.getGreater()).build();
     }
 
+    public Interval getSameInterval(Interval interval) {
+        return interval;
+    }
+
     public Interval getSmallerNotIntersectedInterval(Interval interval) {
         return null;
     }
