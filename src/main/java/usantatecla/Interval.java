@@ -1,24 +1,12 @@
 package usantatecla;
 
-import usantatecla.checkers.*;
-import usantatecla.checkers.leftcheckers.CompareIntervalIncludeIntervalChecker;
-import usantatecla.checkers.leftcheckers.LeftIntersectionChecker;
-import usantatecla.checkers.leftcheckers.PointIntersectionChecker;
-import usantatecla.checkers.rightcheckers.CompareIntervalIsIncludeInIntervalChecker;
-import usantatecla.checkers.rightcheckers.RightIntersectionChecker;
-import usantatecla.checkers.rightcheckers.RightPointIntersectionChecker;
+
+import usantatecla.checkers.IntersectionCheckerHandler;
 
 public class Interval {
 
     public Min min;
     public Max max;
-
-    private final IntersectionChecker pointIntersectionChecker = new PointIntersectionChecker(null);
-    private final IntersectionChecker compareIntervalIncludeIntervalChecker = new CompareIntervalIncludeIntervalChecker(pointIntersectionChecker);
-    private final IntersectionChecker leftIntersectionChecker = new LeftIntersectionChecker(compareIntervalIncludeIntervalChecker);
-    private final IntersectionChecker rightPointIntersectionChecker = new RightPointIntersectionChecker(null);
-    private final IntersectionChecker compareIntervalIsIncludedInInterval = new CompareIntervalIsIncludeInIntervalChecker(rightPointIntersectionChecker);
-    private final IntersectionChecker rightIntersectionChecker = new RightIntersectionChecker(compareIntervalIsIncludedInInterval);
 
     public Interval(Min min, Max max) {
         assert min.value <= max.value;
@@ -26,36 +14,14 @@ public class Interval {
         this.max = max;
     }
 
+    private IntersectionCheckerHandler intersectionCheckerHandler = new IntersectionCheckerHandler();
+
     public boolean include(double value) {
         return this.min.isWithin(value) && this.max.isWithin(value);
     }
 
     public boolean isIntersected(Interval comparedInterval) {
-        if (comparedInterval.min.value < this.min.value) {
-            return leftIntersectionChecker.handle(this, comparedInterval);
-        }
-        if (comparedInterval.min.value > this.min.value) {
-            return rightIntersectionChecker.handle(this, comparedInterval);
-//
-//            if (comparedInterval.max.value > this.max.value && this.max.value > comparedInterval.min.value) {
-//                return true;
-//            }
-//            if (this.max.isWithin(this.max.value) && comparedInterval.min.isWithin(comparedInterval.min.value)
-//                    && Double.compare(comparedInterval.min.value, this.max.value) == 0) {
-//                return true;
-//            }
-//            if (comparedInterval.max.value < this.max.value) {
-//                return true;
-//            }
-        }
-        if (this.max.isWithin(this.max.value) && this.min.isWithin(this.min.value)
-                && comparedInterval.max.isWithin(comparedInterval.max.value)
-                && comparedInterval.max.isWithin(comparedInterval.max.value)
-                && Double.compare(comparedInterval.max.value, this.max.value) == 0
-                && Double.compare(comparedInterval.min.value, this.min.value) == 0) {
-            return true;
-        }
-        return false;
+        return intersectionCheckerHandler.handle(this, comparedInterval);
     }
 
     @Override
