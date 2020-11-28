@@ -24,9 +24,13 @@ public class Interval {
                 return true;
             }
         }
-
-        if (comparedInterval.min.value > this.min.value && comparedInterval.max.value > this.max.value && this.max.value > comparedInterval.min.value) {
-            return true;
+        if (comparedInterval.min.value > this.min.value) {
+            if (comparedInterval.max.value > this.max.value && this.max.value > comparedInterval.min.value) {
+                return true;
+            }
+            if (Double.compare(comparedInterval.min.value, this.max.value) == 0) {
+                return true;
+            }
         }
         if (comparedInterval.min.value > this.min.value && comparedInterval.max.value < this.max.value) {
             return true;
